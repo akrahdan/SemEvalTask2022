@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from typing import List, NamedTuple
 
 from clozetask.core import FeaturizationSpec
-from clozetask.utils import truncate_sequences, pad_to_max_seq_length
+from clozetask.lib.utils import truncate_sequences, pad_to_max_seq_length
 from clozetask.utils.datastructures import BiMap
 
 
