@@ -70,7 +70,7 @@ def setup_model(
     )
 
 
-def delegate_load_from_path(jiant_model: primary.JiantModel, weights_path: str, load_mode: str):
+def delegate_load_from_path(jiant_model: primary.SemEvalModel, weights_path: str, load_mode: str):
     """Load weights dict from file and load weights according to specified loading mode.
     Args:
         jiant_model (JiantModel): jiant model (encoder and task models are core components).
