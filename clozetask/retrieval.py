@@ -6,7 +6,7 @@ from clozetask.task import SemevalTask
 from clozetask.utils.io import read_json
 
 TASK_DICT = {
-    "sem_mclass": SemevalTask
+    "classTask": SemevalTask
 }
 
 def get_task_class(task_name: str):

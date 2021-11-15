@@ -4,7 +4,7 @@ from enum import Enum
 from dataclasses import dataclass
 import torch
 import torch.utils.data.dataloader as dataloader
-from utils.datastructures import ExtendedDataClassMixin, combine_dicts
+from clozetask.utils.datastructures import ExtendedDataClassMixin, combine_dicts
 
 
 
