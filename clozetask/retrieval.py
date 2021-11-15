@@ -49,6 +49,6 @@ def create_task_from_config_path(config_path: str, verbose: bool = False):
         Task instance.
     """
     return create_task_from_config(
-        read_json(config_path), base_path=os.path.split(config_path)[0], verbose=verbose,
+        config_path, base_path=os.path.split(config_path)[0], verbose=verbose,
     )
 
