@@ -28,6 +28,8 @@ def create_task_from_config(config: dict, base_path: Optional[str] = None, verbo
     for k in config["paths"].keys():
         path = config["paths"][k]
         # TODO: Refactor paths  (issue #1180)
+        isAbs = os.path.isabs(path)
+        print(isAbs)
         if isinstance(path, str) and not os.path.isabs(path):
             assert base_path
             config["paths"][k] = os.path.join(base_path, path)

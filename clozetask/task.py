@@ -90,7 +90,7 @@ class SemevalTask(SuperGlueMixin, Task):
                     # NOTE: get_glue_preds() is dependent on this guid format.
                     guid="%s-%s" % (set_type, i),
                     passage_text=line[0],
-                    label=line[1] if set_type != "test" else cls.LABELS[-1],
+                    label=str(line[1]) if set_type != "test" else cls.LABELS[-1],
                 )
             )
         return examples

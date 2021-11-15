@@ -1,0 +1,9 @@
+{
+    "task": "classTask",
+    "paths": {
+      "train": "./Clarification.tsv",
+      "label": "./label.tsv"
+     
+    },
+    "name": "classTask"
+}
