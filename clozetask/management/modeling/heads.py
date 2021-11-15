@@ -8,6 +8,7 @@ import torch.nn as nn
 import transformers
 
 from clozetask.shared.model_resolution import ModelArchitectures
+from clozetask.lib.allennlp import SelfAttentiveSpanExtractor
 from clozetask.core import TaskTypes
 from typing import Callable
 from typing import List
@@ -114,6 +115,26 @@ class RegressionHead(BaseHead):
         scores = self.out_proj(x)
         return scores
 
+
+
+@HeadFactory.register([TaskTypes.SPAN_COMPARISON_CLASSIFICATION])
+class SpanComparisonHead(BaseHead):
+    def __init__(self, task, hidden_size, hidden_dropout_prob, **kwargs):
+        """From RobertaForSpanComparisonClassification"""
+        super().__init__()
+        self.num_spans = task.num_spans
+        self.num_labels = len(task.LABELS)
+        self.hidden_size = hidden_size
+        self.dropout = nn.Dropout(hidden_dropout_prob)
+        self.span_attention_extractor = SelfAttentiveSpanExtractor(hidden_size)
+        self.classifier = nn.Linear(hidden_size * self.num_spans, self.num_labels)
+
+    def forward(self, unpooled, spans):
+        span_embeddings = self.span_attention_extractor(unpooled, spans)
+        span_embeddings = span_embeddings.view(-1, self.num_spans * self.hidden_size)
+        span_embeddings = self.dropout(span_embeddings)
+        logits = self.classifier(span_embeddings)
+        return logits
 
 
 @HeadFactory.register([TaskTypes.TAGGING])
