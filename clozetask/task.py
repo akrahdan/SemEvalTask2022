@@ -21,8 +21,14 @@ class Example(BaseExample):
     label: str
     
     def tokenize(self, tokenizer):
-        return super().tokenize(tokenizer)
+        return TokenizedExample(
+            guid= self.guid,
+            passage_text=tokenizer.tokenize(self.passage_text),
+            label_id= SemevalTask.LABEL_TO_ID[self.label]
+            
+        )
 
+@dataclass
 class TokenizedExample(BaseTokenizedExample):
     guid: str
     passage_text: List
