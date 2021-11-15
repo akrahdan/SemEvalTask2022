@@ -2,6 +2,7 @@ import os
 import glob
 import json
 import pandas as pd
+from sklearn.model_selection import train_test_split
 from clozetask.processing.format_checker_for_training_dataset import check_format_of_training_dataset
 from clozetask.processing.data import retrieve_instances_from_dataset, retrieve_labels_from_dataset_for_classification
 def read_file(path, mode="r", **kwargs):
@@ -14,8 +15,10 @@ def read_csv(tpath, lpath):
     train_instances = retrieve_instances_from_dataset(train_set)
     label_set = pd.read_csv(lpath, sep="\t", header=None, names=["Id", "Label"])
     labels = retrieve_labels_from_dataset_for_classification(label_set)
-    instances = list(zip(train_instances, labels)) 
-    return instances
+    X_train, X_test, y_train, y_test = train_test_split(train_instances, labels, test_size=0.2)
+    train_df = list(zip(X_train, y_train))
+    val_df = list(zip(X_test, y_test))
+    return train_df, val_df
 
 
 

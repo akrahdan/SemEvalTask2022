@@ -64,19 +64,24 @@ class Batch(BatchMixin):
 
 class SemevalTask(SuperGlueMixin, Task):
     Example = Example
+    
     TokenizedExample = Example
+    val_df = None
     DataRow = DataRow
     Batch = Batch
-    Task_Type = TaskTypes.MULTI_LABEL_SPAN_CLASSIFICATION
+    Task_Type = TaskTypes.CLASSIFICATION
     LABELS = ["0", "1", "2"]
     LABEL_TO_ID, ID_TO_LABEL = labels_to_bimap(LABELS)
 
     def get_train_examples(self):
         
-        return self._create_examples(lines=read_csv(self.train_path, self.label_path), set_type="train")
+        train, val =read_csv(self.train_path, self.label_path)
+        self.val_df = val
+        return self._create_examples(lines=train, set_type="train")
 
     def get_val_examples(self):
-        return self._create_examples(lines=read_csv(self.val_path, self.label_path), set_type="val")
+        if self.val_df:
+            return self._create_examples(lines=self.val_df, set_type="val")
 
     def get_test_examples(self):
         return self._create_examples(lines=read_csv(self.test_path, self.label_path), set_type="test")
