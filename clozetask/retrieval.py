@@ -40,10 +40,10 @@ def create_task_from_config(config: dict, base_path: Optional[str] = None, verbo
     return task_class(name=config["name"], path_dict=config["paths"], **task_kwargs)
 
 
-def create_task_from_config_path(config_path: str, verbose: bool = False):
+def create_task_from_config_path(config_path: dict, verbose: bool = False):
     """Creates task instance from task config filepath.
     Args:
-        config_path (str): config filepath.
+        config_path (dict): config filepath.
         verbose (bool): True if task config should be printed during task creation.
     Returns:
         Task instance.
