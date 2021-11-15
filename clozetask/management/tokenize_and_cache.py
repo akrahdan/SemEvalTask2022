@@ -9,7 +9,7 @@ import clozetask.evaluate as evaluate
 import clozetask.utils.io as py_io
 import clozetask.utils.zconf as zconf
 
-from clozetask.management.modeling.primary import JiantTransformersModelFactory
+from clozetask.management.modeling.primary import TransformersModelFactory
 from clozetask.shared.constants import PHASE
 from clozetask.retrieval import create_task_from_config_path
 
@@ -148,7 +148,7 @@ def main(args: RunConfiguration):
     model_type = config.model_type
 
     task = create_task_from_config_path(config_path=args.task_config_path, verbose=True)
-    feat_spec = JiantTransformersModelFactory.build_featurization_spec(
+    feat_spec = TransformersModelFactory.build_featurization_spec(
         model_type=model_type, max_seq_length=args.max_seq_length,
     )
     tokenizer = AutoTokenizer.from_pretrained(args.hf_pretrained_model_name_or_path, use_fast=False)
