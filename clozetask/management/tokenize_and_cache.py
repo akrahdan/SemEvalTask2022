@@ -17,7 +17,7 @@ from clozetask.retrieval import create_task_from_config_path
 @zconf.run_config
 class RunConfiguration(zconf.RunConfig):
     # === Required parameters === #
-    task_config_path = zconf.attr(type=str, required=True)
+    task_config_path = zconf.attr(type=dict, required=True)
     hf_pretrained_model_name_or_path = zconf.attr(type=str, required=True)
     output_dir = zconf.attr(type=str, required=True)
 
