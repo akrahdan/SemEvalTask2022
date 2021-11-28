@@ -756,54 +756,12 @@ def get_evaluation_scheme_for_task(task) -> BaseEvaluationScheme:
     if isinstance(
         task,
         (
-            tasks_retrieval.AdversarialNliTask,
-            tasks_retrieval.AbductiveNliTask,
-            tasks_retrieval.AcceptabilityDefinitenessTask,
-            tasks_retrieval.AcceptabilityCoordTask,
-            tasks_retrieval.AcceptabilityEOSTask,
-            tasks_retrieval.AcceptabilityWHwordsTask,
-            tasks_retrieval.BoolQTask,
-            tasks_retrieval.CopaTask,
-            tasks_retrieval.FeverNliTask,
-            tasks_retrieval.MnliTask,
-            tasks_retrieval.PawsXTask,
-            tasks_retrieval.QnliTask,
-            tasks_retrieval.RaceTask,
-            tasks_retrieval.RteTask,
-            tasks_retrieval.SciTailTask,
-            tasks_retrieval.SentEvalBigramShiftTask,
-            tasks_retrieval.SentEvalCoordinationInversionTask,
-            tasks_retrieval.SentEvalObjNumberTask,
-            tasks_retrieval.SentEvalOddManOutTask,
-            tasks_retrieval.SentEvalPastPresentTask,
-            tasks_retrieval.SentEvalSentenceLengthTask,
-            tasks_retrieval.SentEvalSubjNumberTask,
-            tasks_retrieval.SentEvalTopConstituentsTask,
-            tasks_retrieval.SentEvalTreeDepthTask,
-            tasks_retrieval.SentEvalWordContentTask,
-            tasks_retrieval.SnliTask,
-            tasks_retrieval.SstTask,
-            tasks_retrieval.WiCTask,
-            tasks_retrieval.WnliTask,
-            tasks_retrieval.WSCTask,
-            tasks_retrieval.XnliTask,
-            tasks_retrieval.MCScriptTask,
-            tasks_retrieval.ArctTask,
-            tasks_retrieval.PiqaTask,
+            tasks_retrieval.SemevalTask,
+            
         ),
     ):
         return SimpleAccuracyEvaluationScheme()
-    elif isinstance(task, tasks_retrieval.MCTACOTask):
-        return MCTACOEvaluationScheme()
-    elif isinstance(task, tasks_retrieval.CCGTask):
-        return CCGEvaluationScheme()
-    elif isinstance(task, tasks_retrieval.CommitmentBankTask):
-        return CommitmentBankEvaluationScheme()
-    elif isinstance(task, tasks_retrieval.ColaTask):
-        return MCCEvaluationScheme()
     
-    elif isinstance(task, (tasks_retrieval.MrpcTask, tasks_retrieval.QqpTask)):
-        return AccAndF1EvaluationScheme()
     elif isinstance(
         task,
         (
@@ -811,23 +769,7 @@ def get_evaluation_scheme_for_task(task) -> BaseEvaluationScheme:
         
         ),
     ):
-        return MultiLabelAccAndF1EvaluationScheme()
-    elif isinstance(task, tasks_retrieval.ReCoRDTask):
-        return ReCordEvaluationScheme()
-  
-    
-    elif isinstance(task, tasks_retrieval.MultiRCTask):
-        return MultiRCEvaluationScheme()
-    elif isinstance(task, tasks_retrieval.StsbTask):
-        return PearsonAndSpearmanEvaluationScheme()
-    elif isinstance(task, tasks_retrieval.MLMSimpleTask):
-        return MLMEvaluationScheme()
-    elif isinstance(task, (tasks_retrieval.MLMPremaskedTask, tasks_retrieval.MLMPretokenizedTask)):
-        return MLMPremaskedEvaluationScheme()
-    elif isinstance(task, (tasks_retrieval.QAMRTask, tasks_retrieval.QASRLTask)):
-        return SpanPredictionF1andEMScheme()
-    elif isinstance(task, (tasks_retrieval.UdposTask, tasks_retrieval.PanxTask)):
-        return F1TaggingEvaluationScheme()
+        return SimpleAccuracyEvaluationScheme()
    
     else:
         raise KeyError(task)

@@ -1,0 +1,8 @@
+{
+  "task": "classTask",
+  "paths": {
+    "train": "/Users/akrah/Documents/dev/SemEval22/data/Clarification.tsv",
+    "label": "/Users/akrah/Documents/dev/SemEval22/data/labels.tsv"
+  },
+  "name": "classTask"
+}

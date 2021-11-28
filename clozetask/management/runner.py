@@ -101,7 +101,7 @@ class TaskRunner:
             batch, batch_metadata = train_dataloader_dict[task_name].pop()
             batch = batch.to(self.device)
             model_output = wrap_task_forward(
-                jiant_model=self.jiant_model, batch=batch, task=task, compute_loss=True,
+                semeval_model=self.jiant_model, batch=batch, task=task, compute_loss=True,
             )
             loss = self.complex_backpropagate(
                 loss=model_output.loss,

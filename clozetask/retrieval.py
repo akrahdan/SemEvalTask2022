@@ -24,6 +24,11 @@ def create_task_from_config(config: dict, base_path: Optional[str] = None, verbo
     Returns:
         Task instance.
     """
+    #print("Config:",config)
+    if (isinstance(config, str)): 
+        config = read_json(config)
+    
+    
     task_class = get_task_class(config["task"])
     for k in config["paths"].keys():
         path = config["paths"][k]

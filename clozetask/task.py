@@ -69,7 +69,7 @@ class SemevalTask(SuperGlueMixin, Task):
     val_df = None
     DataRow = DataRow
     Batch = Batch
-    Task_Type = TaskTypes.CLASSIFICATION
+    TASK_TYPE = TaskTypes.CLASSIFICATION
     LABELS = ["0", "1", "2"]
     LABEL_TO_ID, ID_TO_LABEL = labels_to_bimap(LABELS)
 

@@ -1,0 +1,5 @@
+{
+  "train": "./cache/classTask/train",
+  "val": "./cache/classTask/val",
+  "val_labels": "./cache/classTask/val_labels"
+}

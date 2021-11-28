@@ -1,0 +1,50 @@
+{
+  "task_config_path_dict": {
+    "classTask": "./tasks/configs/classTask_config.json"
+  },
+  "task_cache_config_dict": {
+    "classTask": {
+      "train": "./cache/classTask/train",
+      "val": "./cache/classTask/val",
+      "val_labels": "./cache/classTask/val_labels"
+    }
+  },
+  "sampler_config": {
+    "sampler_type": "ProportionalMultiTaskSampler"
+  },
+  "global_train_config": {
+    "max_steps": 5994,
+    "warmup_steps": 599
+  },
+  "task_specific_configs_dict": {
+    "classTask": {
+      "train_batch_size": 8,
+      "eval_batch_size": 16,
+      "gradient_accumulation_steps": 1,
+      "eval_subset_num": 500
+    }
+  },
+  "taskmodels_config": {
+    "task_to_taskmodel_map": {
+      "classTask": "classTask"
+    },
+    "taskmodel_config_map": {
+      "classTask": null
+    }
+  },
+  "task_run_config": {
+    "train_task_list": [
+      "classTask"
+    ],
+    "train_val_task_list": [
+      "classTask"
+    ],
+    "val_task_list": [
+      "classTask"
+    ],
+    "test_task_list": []
+  },
+  "metric_aggregator_config": {
+    "metric_aggregator_type": "EqualMetricAggregator"
+  }
+}
