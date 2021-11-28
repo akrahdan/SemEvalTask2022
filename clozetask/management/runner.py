@@ -278,7 +278,7 @@ def run_val(
 
         with torch.no_grad():
             model_output = wrap_task_forward(
-                jiant_model=jiant_model, batch=batch, task=task, compute_loss=True,
+                semeval_model=jiant_model, batch=batch, task=task, compute_loss=True,
             )
         batch_logits = model_output.logits.detach().cpu().numpy()
         batch_loss = model_output.loss.mean().item()
