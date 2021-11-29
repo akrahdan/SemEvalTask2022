@@ -152,7 +152,7 @@ class TaskRunner:
             task = self.jiant_task_container.task_dict[task_name]
             evaluate_dict[task_name] = run_test(
                 test_dataloader=test_dataloader_dict[task_name],
-                jiant_model=self.jiant_model,
+                sem_model=self.jiant_model,
                 task=task,
                 device=self.device,
                 local_rank=self.rparams.local_rank,
@@ -253,7 +253,7 @@ class CheckpointSaver:
 def run_val(
     val_dataloader,
     val_labels,
-    jiant_model: SemEvalModel,
+    model: SemEvalModel,
     task,
     device,
     local_rank,
@@ -265,7 +265,7 @@ def run_val(
     #   val_labels might contain more details information needed for full evaluation
     if not local_rank == -1:
         return
-    jiant_model.eval()
+    model.eval()
     total_eval_loss = 0
     nb_eval_steps, nb_eval_examples = 0, 0
     evaluation_scheme = evaluate.get_evaluation_scheme_for_task(task=task)
@@ -278,7 +278,7 @@ def run_val(
 
         with torch.no_grad():
             model_output = wrap_task_forward(
-                semeval_model=jiant_model, batch=batch, task=task, compute_loss=True,
+                semeval_model=model, batch=batch, task=task, compute_loss=True,
             )
         batch_logits = model_output.logits.detach().cpu().numpy()
         batch_loss = model_output.loss.mean().item()
@@ -294,9 +294,9 @@ def run_val(
         nb_eval_steps += 1
     eval_loss = total_eval_loss / nb_eval_steps
     tokenizer = (
-        jiant_model.tokenizer
-        if not torch_utils.is_data_parallel(jiant_model)
-        else jiant_model.module.tokenizer
+        model.tokenizer
+        if not torch_utils.is_data_parallel(model)
+        else model.module.tokenizer
     )
     output = {
         "accumulator": eval_accumulator,
