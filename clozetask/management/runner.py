@@ -136,7 +136,7 @@ class TaskRunner:
             evaluate_dict[task_name] = run_val(
                 val_dataloader=val_dataloader_dict[task_name],
                 val_labels=val_labels_dict[task_name],
-                jiant_model=self.jiant_model,
+                model=self.jiant_model,
                 task=task,
                 device=self.device,
                 local_rank=self.rparams.local_rank,
