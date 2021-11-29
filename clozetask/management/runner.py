@@ -334,7 +334,7 @@ def run_test(
 
         with torch.no_grad():
             model_output = wrap_task_forward(
-                jiant_model=sem_model, batch=batch, task=task, compute_loss=False,
+                semeval_model=sem_model, batch=batch, task=task, compute_loss=False,
             )
         batch_logits = model_output.logits.detach().cpu().numpy()
         eval_accumulator.update(
