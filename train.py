@@ -10,8 +10,8 @@ import os
 
 
 export_model.export_model(
-    hf_pretrained_model_name_or_path="roberta-base",
-    output_base_path="./models/roberta-base",
+    hf_pretrained_model_name_or_path="google/electra-base-discriminator",
+    output_base_path="./models/electra-base",
 )
 BASE_DIR = Path(__file__).resolve().parent
 configs = {
@@ -31,7 +31,7 @@ py_io.write_json(configs, "./tasks/configs/classTask_config.json")
 
 conf = tokenize_and_cache.RunConfiguration(
     task_config_path= configs,
-    hf_pretrained_model_name_or_path="roberta-base",
+    hf_pretrained_model_name_or_path="google/electra-base-discriminator",
     output_dir=f"./cache/{task_name}",
     phases=["train", "val"],
 )
@@ -56,9 +56,9 @@ display.show_json(jiant_run_config)
 run_args = runscript.RunConfiguration(
     jiant_task_container_config_path="./run_configs/classTask_run_config.json",
     output_dir="./runs/classTask",
-    hf_pretrained_model_name_or_path="roberta-base",
-    model_path="./models/roberta-base/model/model.p",
-    model_config_path="./models/roberta-base/model/config.json",
+    hf_pretrained_model_name_or_path="google/electra-base-discriminator",
+    model_path="./models/electra-base/model/model.p",
+    model_config_path="./models/electra-base/model/config.json",
     learning_rate=1e-5,
     eval_every_steps=500,
     do_train=True,

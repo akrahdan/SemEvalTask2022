@@ -457,7 +457,7 @@ class SemEvalElectraModel(TransformersModel):
         output = self.forward(
             input_ids=input_ids, token_type_ids=segment_ids, attention_mask=input_mask
         )
-        unpooled = output.hidden_states
+        unpooled = output.last_hidden_state
         pooled = unpooled[:, 0, :]
         return ModelOutput(pooled=pooled, unpooled=unpooled, other=output.hidden_states)
 
